@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script type="text/javascript">
+            /* 
+                1.什么是数据？
+                    存储在内存中代表特定信息的东西，本质上是0101...
+                    特点：可传递，可运算
+                2.什么是内存？
+                    可存储数据的临时空间
+                    一块内存的两个数据
+                        1.内部存储的数据
+                        2.地址值 
+                    操作目标：数据
+                        算数运算
+                        逻辑运算
+                        赋值
+                        运行函数
+                    内存分类：
+                        栈：全局变量/局部变量
+                        堆：对象
+                3.什么是变量？
+                    可变换的量，由变量名和变量值组成
+                    每个变量都对应的一块小内存，变量名用来查找对应的内存，变量值就是内存中保存的数据
+                4.内存，数据，变量三者之间的关系？
+            */
+
+           var obj = {name:'Tom'};
+           var a = obj;
+           console.log (obj.name);
+
+           function fn(){
+               var obj = {name : "Tom"}
+           }
+
+           /* 
+                问题一：var a = xxx ,a内存中到底保存的是什么
+                    * xxx是基本数据，保存的就是这个数据
+                    * xxx是对象，保存的是对象的地址值
+                    * xxx是一个变量，保存的xxx的内存内容（可能是基本数据，也可能是地址值）
+
+           */
+
+           /* 
+                关于引用变量赋值问题
+                    *n个引用变量指向同一个对象，通过一个变量修改对象内部数据，其他所有变量看到的是修改之后的数据
+                    *n个引用变量指向同一个对象，让其中一个引用变量指向另一个对象，另一引用变量依然指向前一个对象
+
+           */
+
+           //例一
+           console.log("----------------")
+           var obj1 = {name : "Tom"};
+           var obj2 = obj1;
+           obj2.age = 12;
+           console.log(obj1.age);
+           function fn(obj){
+               obj.name = 'A'
+           };
+           fn(obj1);
+           console.log(obj2.name)
+           console.log("----------------")
+
+           //例二
+           var a = {age : 12};
+           var b = a;
+           a = {name : "BOB" , age: 13};
+           b.age = 14;
+           console.log (b.age , a.name , a.age)
+
+           function fn2(obj){
+               obj = {age : 15}; //这就是垃圾对象
+               //obj.age = 15 ; //这样写才是对对象操作
+           };
+           fn2(a);
+           console.log(a);
+           console.log("----------------");
+
+           /* 问题 在js调用函数时传递变量参数时，是值传还是引用传 
+                   理解1：都是值（基本/地址值）传递
+                   理解2：可能是值传递，也可能是引用传递（地址值）
+           */
+
+           var num = 3;
+           function fnnum(a){
+              //a = a + 1;
+                num = a + 1
+           }
+           fnnum(num);
+           console.log(num);
+
+           function fnname(obj){
+               console.log(obj.name)
+           }
+           var objname = {name : "tom"}
+           fnname(objname)
+
+           /* 
+                js如何管理内存？
+                1.内存生命周期
+                    *分配小内存空间，得到它的使用权
+                    *存储数据，可以反复进行操作
+                    *释放小内存空间
+                2.释放内存
+                    *局部变量：函数执行完自动释放
+                    *对象：成为垃圾对象 ==》垃圾回收器回收
+           */
+
+           var cache = 3;
+           var cacheObj = {};
+           cacheObj = null;//此事只是释放了cacheObj的内容内存，没有释放本身内存
+
+           function fn (){
+               var b = {}
+           }
+
+           fn() //b是自动释放，b所指向的对象是在后面的某刻时刻由垃圾回收器回收
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

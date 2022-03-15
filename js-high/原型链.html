@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>原型链</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <script type="text/javascript">
+        /* 
+            原型链
+            1.先在自身属性中查找，找到返回
+            2.如果没找到就在原型对象中找
+            3.如果还没找到就在对象的原型中找（最终）
+            4.依然没找到返回undefined
+            //隐式原型链
+            //查找对象的属性
+            //构造对象的显式原型是实例对象的隐式原型
+        */
+
+        function Fn(){
+            this.test1 = function(){
+                console.log("test1()")
+            }
+        }
+        Fn.prototype.test2 = function(){
+            console.log("test2()")
+        }
+
+        
+
+        var fn = new Fn()
+        fn.test1()
+        fn.test2()
+        console.log(fn.toString())
+
+
+        /* 
+            Object的原型为原型链的尽头，对象值为null
+        */
+        console.log(Object.prototype.__proto__)//这个值是null
+
+
+         /* 
+            1.函数的显式原型指向的对象：默认是空Object实例对象（Object不满足）
+         */
+        console.log(Fn.prototype instanceof Object) //instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。
+        console.log(Object.prototype instanceof Object)
+        console.log(Function.prototype instanceof Object)
+
+        /* 
+            2.所有函数都是Function的实例（包含Function）
+        */
+        console.log(Function.__proto__ === Function.prototype)
+        //Function才有prototype属性，对象（除Object）拥有__proto__，因为函数也是对象，所以也有__proto__
+
+        //Function
+
+        /* 
+            原型链属性顺序自下而上找
+            找不到才会到下一层找，如果本层找到了，那么直接返回当前层对应的值
+        */
+
+        Fn.prototype.a = "AAA"
+        var fn1 = new Fn()
+        var fn2 = new Fn()
+        fn2.a = "BBB"
+
+        console.log(fn1.a,fn1)
+        console.log(fn2.a,fn2)
+
+        /* 
+            原型链使用方法之一：构造函数的原型，节约命名空间
+        */
+        function Person(name ,age){
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.rename = function(name){
+            this.name = name
+        }
+        var p1 = new Person("Tom" , "12")
+        console.log(p1)
+        p1.rename("Bob")
+        console.log(p1)
+
+    </script>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

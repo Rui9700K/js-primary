@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script type="text/javascript">
+            function Foo(){
+
+            }
+            var f1 = new Foo()
+            console.log(f1 instanceof Foo)
+            console.log(f1 instanceof Object)
+            console.log(Function instanceof Function)
+            console.log(Function instanceof Object)
+            console.log(Object instanceof Function)
+            console.log(Object instanceof Foo)
+            console.log(Foo instanceof Object)
+            console.log(Foo instanceof Function)
+            //A instanceof B
+            //如果B的显式原型在A的原型链上，那么就会返回true
+
+            //原型链例题
+
+            //1
+            function A(){
+
+            }
+            A.prototype.n = 1
+
+            var b = new A()
+
+            A.prototype = {
+                n:2,
+                m:3,
+            }
+
+            var c = new A()
+            console.log(b.n , b.m , c.n , c.m )
+            console.log(A)
+
+            //2
+            function F(){
+
+            }
+            Object.prototype.a = function(){
+                console.log('a()')
+            }
+            Function.prototype.b = function(){
+                console.log('b()')
+            }
+            var f = new F()
+            f.a()
+            //f.b()
+            F.a()
+            F.b()
+            console.log(f)
+            console.log(Object.prototype)
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

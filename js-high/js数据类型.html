@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script type="text/javascript">
+            /* 
+                基本值：
+                    String：字符串
+                    Number：任意数字
+                    Boolean：true/false
+                    undefined：undefined 定义了没赋值
+                    null：null  赋值了，但是为空
+                对象（引用）类型：
+                    Object：任意对象
+                    Function：一种特别的对象（可执行）
+                    Array：一种特别的对象（数值下标，内部数据是有序的）
+                判断
+                    typeof 返回数据类型的字符串表达式 
+                           可以判断：undefined / 数值 / 字符串 / 布尔值 /function
+                           不能判断：null与object object与array
+                    instanceof 判断对象的具体类型
+                    === 会有类型转换 可以用来判断undefined 和 null
+            */
+           var b1={
+               b2:[1 , 'abc' , console.log],
+               b3:function(){
+                   console.log('b3')
+                   return function(){
+                       return "1";
+                   }
+               },
+           }
+           console.log(b1 instanceof Object , b1 instanceof Array)
+           console.log(b1.b2 instanceof Object , b1.b2 instanceof Array)
+           console.log(b1.b3 instanceof Object , b1.b3 instanceof Function)
+           console.log(b1.b3()())
+
+           /* 
+                //实例：实例对象
+                //类型：类型对象
+           */
+
+           function Person (name , age){//构造函数 类型
+               this.name = name;
+               this.age = age;
+           }
+           var p = new Person() // 根据类型创建的实力对象
+
+           //Person('jack' , 12) 这种就是不合适的
+
+           /* 
+                数据的类型
+                    基本类型
+                    对象类型
+                变量的类型（变量内存值得类型）
+                    基本类型：保存就是基本类型的数据
+                    引用类型：保存的是地址值，由地址指向内存
+           
+           */
+
+           var c = function(){
+
+           }//function把地址值给了c
+
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>
