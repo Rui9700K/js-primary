@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+
+        button {
+            font-size: 22px;
+        }
+
+        #info {
+            margin-left: 20px;
+            width: 300px;
+            height: 400px;
+            overflow: auto;
+        }
+
+        #DrawArea {
+            height: 400px;
+            width: 600px;
+            border-width: 1px;
+            border-style: solid;
+            background-color: rebeccapurple;
+            margin-top: 20px;
+        }
+        #ShowMsg{
+            height: 10px;
+            width: 600px;
+            text-align:center;
+        }
+        #MoveBox{
+            height: 200px;
+            width: 200px;
+            background-color:aqua;
+            /* 开启box的绝对定位 */
+            position: absolute;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            //点击按钮改变盒子
+            var box1 = document.getElementById("box1");
+            var btn01 = document.getElementById("btn01");
+            btn01.onclick = function () {
+
+                /* 
+                    通过js修改样式
+                    语法：元素.style.样式名 = 样式值
+
+                    注意CSS样式名中含有-，
+                    这种名称在js中是不合法的
+                    需要将这种样式名修改为驼峰命名法
+                */
+                box1.style.width = "400px";
+                box1.style.height = "400px";
+                box1.style.backgroundColor = "aqua";
+
+
+            }
+            var btn02 = document.getElementById("btn02");
+            btn02.onclick = function () {
+                //alert(box1.style.width);//读取和设置的都是内联样式
+                //alert(getComputedStyle(box1,null).width);
+                alert(getStyle(bo1, "width"));
+                /* 
+                    获取元素当前的样式
+                    元素.currentStyle.样式名
+
+                    getComputedStyle()也可以获取元素当前样式，但是是封装了的
+                                        1.元素名
+                                        2.一般是null
+                */
+
+            }
+
+            //滚动条到底时可以打勾
+            /* onscoll 
+                会在滚动条滚动时触发
+            */
+            var info = document.getElementById("info");
+            var check = document.getElementById("check");
+
+            info.onscroll = function () {
+                //垂直滚动条是否到底
+                if (info.scrollHeight - info.scrollTop == info.clientHeight) {
+                    check.disabled = false;
+                }
+            }
+
+            check.onclick = function () {
+                if (check.checked) {
+                    document.getElementById("submit").disabled = false;
+                }
+                else {
+                    document.getElementById("submit").disabled = true;
+                }
+            }
+
+            //鼠标跟踪
+            var DrawArea = document.getElementById("DrawArea");
+            var ShowMsg = document.getElementById("ShowMsg");
+
+            //onmousemove 该事件会在鼠标移动时触发
+            //在事件响应函数触发的时候浏览器总会传回一个实参
+            //封装了鼠标事件，键盘事件......
+
+            DrawArea.onmousemove = function (Collect) {
+                /*
+                     clientX:鼠标x位置
+                     clientY:鼠标Y位置(window)
+
+                     pageX：
+                     pageY：(页面)
+                */
+                var X = Collect.clientX;
+                var Y = Collect.clientY;
+                ShowMsg.innerHTML = "clientX=" + X + ", clientY=" + Y;
+            };  
+            
+
+            /* //div 盒子移动
+            var MoveBox = document.getElementById("MoveBox");
+            document.onmousemove = function (Collect) {
+                var X = Collect.pageX;
+                var Y = Collect.pageY;
+                MoveBox.style.left = X+"px";
+                MoveBox.style.top = Y+"px";
+            }; */
+
+        }
+    </script>
+</head>
+
+<body>
+
+    <button id="btn01">click me</button>
+
+    <button id="btn02">click me2</button>
+
+    <div id="box1"></div>
+
+    <h3>欢迎注册</h3>
+    <p id="info">
+        请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：
+        请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：
+        请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：
+        请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：
+        请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：
+        请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：
+        请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：
+        请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：
+        请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：
+        请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：
+        请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：
+        请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：
+        请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：
+        请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：请仔细阅读以下协议：
+    </p>
+    <input id="check" type="checkbox" disabled="true" /> 已经知晓
+    <input id="submit" type="submit" value="注册" disabled="true" />
+    <div id="DrawArea"></div>
+    <div id="ShowMsg"></div>
+    <div id="MoveBox"></div>
+</body>
+
+</html>

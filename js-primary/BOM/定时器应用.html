@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style type="text/css">
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            #box{
+                width: 100px;
+                height: 100px;
+                left:0px;
+                background-color:aqua;
+                position:absolute;
+            }
+            #box2{
+                width: 100px;
+                height: 100px;
+                left:0px;
+                background-color:red;
+                position:absolute;
+                top: 200px;
+            }
+        </style>
+        <script type="text/javascript" src = "tools.js"></script>
+        <script type="text/javascript">
+            window.onload = function(){
+
+                var box = document.getElementById("box");
+                var btn = document.getElementById("btn");
+                var btn2 = document.getElementById("btn2");
+                var btn3 = document.getElementById("btn3");
+                var btn4 = document.getElementById("btn4");
+                //var timer;
+                /* btn.onclick = function(){
+                    //点击按钮之后一直移动
+
+                    //关闭上一个定时器
+                    clearInterval(timer);
+
+                    timer = setInterval(function(){
+                        var oldValue = parseInt(getStyle(box,"left"));
+                        var newValue = oldValue + 20;
+                        if(newValue >= 800){
+                            newValue = 800;
+                            //当元素移动到目标值的时候停止动画
+                            clearInterval(timer)
+                        }
+                        box.style.left = newValue +"px";
+
+                    },30)
+                } */
+
+                btn.onclick = function(){
+                    move(box , 800 , 20 , "left")
+                }
+
+                btn2.onclick = function(){
+                    move(box , 0 , 20 , "left")
+                }
+
+                btn3.onclick = function(){
+                    move(box2 , 800 , 30 , "left")
+                }
+
+                btn4.onclick = function(){
+                    move(box2 , 800 , 20 , "width", function(){
+                        move(box2 , 400 , 30 , "height",function(){
+
+                        })
+                    })
+                }
+
+            }
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <button id = "btn">点击按钮以后box向右移动</button>
+        <button id = "btn2">点击按钮以后box向左移动</button>
+        <button id = "btn3">点击按钮以后box2向右移动</button>
+        <button id = "btn4">更多功能</button>
+        <br />
+        <br />
+        <div id = "box"></div>
+        <div id = "box2"></div>
+        <div style = "width:0;height:1000px;border-left:1px black solid;position:absolute;left:800px;top:0"></div>
+        <script src="" async defer></script>
+    </body>
+</html>

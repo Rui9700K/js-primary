@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>拖拽</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style type="text/css">
+            #box1{
+                width: 200px;
+                height: 200px;
+                background-color:aqua;
+                position:absolute;
+            }
+            #box2{
+                width: 200px;
+                height: 200px;
+                background-color:red;
+                position:absolute;
+                left: 500px;
+                top: 500px;
+                z-index: -1;
+            }
+        </style>
+
+        <script type="text/javascript">
+            window.onload = function(){
+                /* 拖拽box1元素
+                    1.鼠标按下时开始拖拽 onmousedown
+                    2.当鼠标移动时跟着鼠标移动 onmousemove
+                    3.鼠标松开时，元素固定在当前位置 onmouseup
+                */
+
+                function drag(obj){
+                        var box = document.getElementById(obj)
+                        box.onmousedown = function(event){
+
+                        //点击的时候和box的相对位置
+                        var ol = event.clientX - box.offsetLeft;
+                        var ot = event.clientY - box.offsetTop;
+                        //var sc = document.scrollHeight - document.scrollTop;
+
+                        //为body绑定
+                        document.onmousemove = function(event){
+
+                            //获取鼠标坐标
+                            var X = event.clientX-ol;
+                            var Y = event.clientY-ot;
+
+                            box.style.left = X+"px";
+                            box.style.top = Y+"px";
+
+                        }
+
+                        document.onmouseup = function(){
+                            //鼠标松开时候，取消onmousemove事件
+                            //alert("1")
+                            document.onmousemove = null;
+                            document.onmouseup = null;
+                        }
+                        return false;//取消默认行为
+                    }
+                }
+
+                drag("box1");
+                drag("box2");
+            }
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div id = "box1"></div>
+        <div id = "box2"></div>
+        <script src="" async defer></script>
+    </body>
+</html>

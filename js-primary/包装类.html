@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        /* 包装类可以把基本数据类型转换为对象
+            String()
+                可以把基本数据对象转为string类
+            Number()
+                可以把基本数据对象转换为Number类
+            Boolean()
+                可以把基本数据类型对象转换为Boolean类
+            */
+
+        var num = new Number(3);
+        var str = new String("hello world");
+        var bool = new Boolean(true);
+
+        /* string操作 */
+        //从底层看和数组差不多，可以理解为字符数组
+
+        //var str2 = "hello";
+        console.log(str[3]);//也可以用charAt()
+
+        // indexOf(x , y) 从第y位往后查找x 默认从前开始
+
+        // lastIndexOf(x , y) 从第y位往前查找x 默认从后开始
+
+        //slice() 截取内容 第一个，开始的位置。第二个结束的位置。包括开始不包括结尾。
+
+        //substring() 不能传入负值
+        
+
+        //split() 根据传入的字符来分割 处理过后变成数组
+        str = "127.106.35.14";
+
+        result = str.split(".");
+
+        console.log(result[1]);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

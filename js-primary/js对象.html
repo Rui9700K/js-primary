@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj = new Object();
+        //对象.属性名 = 属性值;
+        obj.name = "hello";
+        obj.gender = "bot";
+        obj.age = 18;
+        obj["123"] = 789;
+        console.log(obj);//字典
+
+        var obj2 = {
+            name:"zyf",
+            age: 18,
+            gender: "男",
+        }
+        console.log(obj2);
+
+        var fun = new Function("console.log('hello第一个函数')");//只是封装
+        //还需要调用
+        //调用方法：函数对象()
+        fun();
+
+        /* 使用 函数声明 来创建一个函数 
+            语法：
+                function 函数名 ([形参1,2,等]){
+                    语句
+                }
+            */
+
+        function fun2(){
+            console.log("第二个函数");
+            //alert("哈哈哈");
+            document.write("???"+"<br/>");
+        }
+
+        fun2();
+        
+        /* 函数表达式创建函数 */
+        var fun3 = function(){
+            console.log("第三个函数");
+        };//赋值语句最好加个分号
+
+        fun3();
+
+
+        function sum(a,b){
+            var c = a+b;
+            return c;
+        }
+
+        var number = sum(123,456);
+        //document.write(number);
+
+        (function(a,b){
+            console.log(a);
+            console.log(b);
+        })(123,456);
+
+        //call()和apply()的应用，改变函数的传入this
+        //call()方法可以将实参在对象后依次传递
+        //apply()方法需要将实参封装到一个数组中统一传递
+        var objCall1 = {
+            name:"objcall1",
+            sayName:function(a){
+                document.write(a);
+            },
+        };
+
+        var objCall2 = {
+            name:"objcall2"
+        };
+
+        function funCall(){
+            document.write(this.name);
+        };
+        //funCall.call(objCall1);
+        //funCall.apply(objCall2);
+        //funCall();
+        objCall1.sayName.call(objCall1,5);
+        objCall1.sayName.apply(objCall1,[6]);
+
+        //arguments:调用函数时，浏览器每次都会传递进两个隐含的参数：
+        // 1.函数的上下文对象this；
+        // 2.封装实参的对象arguments 可以通过该对象获取实参个数与实参值
+        //       --说明，我们即使不定义形参，也可以通过arguments获取实参
+
+        function funArguments(){
+            console.log(arguments.length);
+            console.log(arguments[0]);
+            console.log(arguments.callee == funArguments);
+        };
+
+        funArguments("hello",true,1);
+
+    </script>
+</body>
+</html>

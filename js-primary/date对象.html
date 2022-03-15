@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+
+        //date对象
+        //date对象默认封装为当前代码执行的时间
+        var d = new Date();
+
+        //创建一个指定的时间对象
+        var d2 = new Date("2/07/2022");
+        //日期格式  月份/日/年 时：分：秒
+
+        /* getDate() 获取当前日期对象是几日 */
+
+        var time = d.getTime();
+        console.log(time);
+
+        var start = Date.now();
+
+        for(var i = 0 ; i < 10 ; i++)
+        {
+            console.log(i);
+        }
+
+        var end = Date.now();
+
+        console.log(end-start);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

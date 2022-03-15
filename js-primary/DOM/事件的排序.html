@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>事件的排序</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style type="text/css">
+            #box1{
+                width: 200px;
+                height: 200px;
+                background-color: aqua;
+            }
+            #span1{
+                background-color:aliceblue;
+            }
+            ul{
+                background-color:greenyellow;
+            }
+        </style>
+        <script type="text/javascript">
+            window.onload = function(){
+
+                //不希望事件发生，可以通过实践对象来取消冒泡
+                var span1 = document.getElementById("span1")
+                span1.onclick= function(event){
+                    event.cancelBubble = true;
+                    alert("span1");
+                };
+
+                var box1 = document.getElementById("box1")
+                box1.onclick= function(event){
+                    event.cancelBubble = true;
+                    alert("box1");
+                };
+
+                /* document.body.onclick = function(event){
+                    event.cancelBubble = true;
+                    alert("body");
+                };
+                */
+            
+                /* 
+                    为每个超链接绑定单击响应函数
+                */
+
+                /* var allA = document.getElementsByTagName("a")
+                for (var i = 0; i < allA.length; i++){
+                    allA[i].onclick= function(){
+                        alert("1");
+                    }
+                    //这种方式既占用内存，又较为冗余，一般不用
+                    //我们希望绑定一次事件，就可应用到多个目标上，即使元素是后面添加的
+                } */
+
+                var ul1 = document.getElementById("ul1");
+                ul1.onclick= function(event){             
+                    //如果触发的是期望元素，则执行，否则不执行
+                    if (event.target.className == "link"){
+                        alert("1");
+                    }
+                }
+                //事件的委派，子元素不管谁触发都会让祖先元素触发
+
+                var btnAddA = document.getElementById("btnAddA");
+                btnAddA.onclick= function(){
+                    var li = document.createElement("li");
+                    li.innerHTML = "<a href='javascript:;' class='link'>新建超链接</a>";
+                    ul1.appendChild(li);
+                }
+
+                /* var btnEvent = document.getElementById("btnEvent");
+                btnEvent.onclick= function(){
+                    alert("hello")
+                } */
+                //这种事件绑定对象的次数为“1”，之后的绑定会覆盖前者
+
+                //addEventListener();
+                //通过这个方法也可以为元素绑定响应函数
+                //参数：
+                //1.事件的字符串（无on）
+                //2.回调函数，当事件触发时该函数会被调用
+                //3.是否在捕获阶段触发事件，一般为false
+
+                btnEvent.addEventListener("click", function(){
+                    alert("hello1")
+                },false);
+                btnEvent.addEventListener("click", function(){
+                    alert("hello2")
+                },false);
+                btnEvent.addEventListener("click", function(){
+                    alert("hello3")
+                },false);
+                //用此方法可以同时为一个元素的相同事件同时绑定多个函数
+
+            }
+        </script>
+    </head>
+    <body id="body">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
+
+        <div id = "box1">
+            我是box1
+            <span id = "span1">我是span</span>
+        </div>
+
+        <ul id = "ul1">
+            <li><a href="javascript:;" class="link">超链接一</a></li>
+            <li><a href="javascript:;" class="link">超链接二</a></li>
+            <li><a href="javascript:;" class="link">超链接三</a></li>
+            <li><a href="javascript:;" class="link">超链接四</a></li>
+        </ul>
+
+        <button id = "btnAddA">添加超链接</button>
+
+        <br />
+        <br />
+        <button id = "btnEvent">点我一下</button>
+
+        <script src="" async defer></script>
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script type="text/javascript">
+
+            //js对象只有js认识
+            /* 
+                json就是一个特殊的字符串，这个字符串可以被任意语言识别，
+                并且可以转换为任何语言中的对象，json在开发中主要用来数据的交互
+                javascript object notation js对象表示法
+                但是属性名必须加双引号
+                其他的和js语法一致
+
+                json分类：
+                1、对象{}
+                2、数组[]
+
+                json允许的值：
+                    1.字符串
+                    2.数值
+                    3.布尔值
+                    4.null
+                    5.对象
+                    6.数组
+            */
+            var obj = '{"name":"孙悟空","age":18,"gender":"男"}';
+            var arr = '[1,2,3,"hello",true]';
+            /* 
+                将json数据转化为js对象
+                js中，提供了一个工具类，就叫JSON
+            */
+            // json -> js对象 : JSON.parse() 
+            console.log(JSON.parse(obj));
+
+
+
+            var obj2 = {name:"孙悟空",age:18,gender:"男"}
+            /* 
+                JS对象 -> JSON
+                JSON.stringify()
+             */
+            console.log(JSON.stringify(obj2));
+
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

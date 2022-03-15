@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style type="text/css">
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            .b1{
+                width: 100px;
+                height: 100px;
+                background-color: aqua;
+            }
+            .b2{
+                background-color:red;
+            }
+            .b3{
+                width: 200px;
+                height: 100px;
+                background-color:yellow;
+            }
+        </style>
+        <script type="text/javascript">
+            window.onload = function(){
+                var btn1 = document.getElementById("change")
+                var btn2 = document.getElementById("change2")
+                var btn3 = document.getElementById("change3")
+                var box = document.getElementById("box1")
+                btn1.onclick = function(){
+                    //修改
+                    addClass(box , "b2")
+                }
+
+                btn2.onclick = function(){
+                    removeClass(box , "b2")
+                }
+
+                btn3.onclick = function(){
+                    changeReplace(box , "b3");
+                }
+            }
+
+            function addClass(obj , cn){
+                //判断有没有CN这个class类，构造正则函数
+                var reg = new RegExp("\\b"+cn+"\\b");
+                if(!reg.test(obj.className)){
+                    //没有就添加class
+                    //添加class
+                    obj.className += " "+cn;
+                }
+            }
+            function removeClass(obj , cn){
+                //判断有没有CN这个class类，构造正则函数
+                var reg = new RegExp("\\b"+cn+"\\b");
+                
+                obj.className = obj.className.replace(reg , "");
+            }
+            function changeReplace(obj , cn){
+                var reg = new RegExp("\\b"+cn+"\\b");
+                if(reg.test(obj.className)){
+                    //有就删除class
+                    //删除class
+                    obj.className = obj.className.replace(reg , "");
+                }else{
+                    obj.className += " "+cn;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div id = "box1" class="b1 b2"></div>
+        <button id = "change">更改box样式</button>
+        <button id = "change2">删除box样式</button>
+        <button id = "change3">替换box样式</button>
+        <script src="" async defer></script>
+    </body>
+</html>

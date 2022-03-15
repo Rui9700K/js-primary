@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style type="text/css">
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            /* outer样式 */
+            img{
+                width: 500px;
+            }
+            #outer{
+                width:520px;
+                height:500px;
+                margin:50px auto;
+                padding: 10px 0;
+                background-color:greenyellow;
+                position: relative;
+                overflow:hidden;
+                /* 去除相对于父元素溢出的部分 */
+            }
+            #imgList{
+                list-style: none;
+                position:absolute;
+                /* 子元素开启绝对定位父元素最好开启相对定位 */
+                left: 0px;
+            }
+            #imgList li{
+                float: left;
+                margin:0 10px;
+            }
+            #navDiv{
+                position: absolute;
+
+                left: 50%;
+                transform: translate(-50%);
+
+                bottom: 20px;
+            }
+            #navDiv a{
+                float: left;
+                width:20px;
+                height:20px;
+                background-color: red;
+                margin:0 10px;
+                opacity: 0.5;
+            }
+            #navDiv a:hover{
+                background-color:aqua;
+            }
+        </style>
+        <script type="text/javascript" src = "tools.js"></script>
+        <script>
+            window.onload = function(){
+                //设置imglist宽度
+                var imgList = document.getElementById("imgList");
+                //获取所有图片
+                var imgArr = document.getElementsByTagName("img");
+                imgList.style.width = imgArr.length*520 + "px";
+
+                var index = 0;
+                var allA = document.getElementsByTagName("a");
+                allA[index].style.backgroundColor = "aqua";
+
+                /* 点击超链接切换到指定图片 */
+                for(var i=0 ; i<allA.length ; i++){
+
+                    //为每个超链接添加一个count属性
+                    allA[i].count = i;
+
+                    allA[i].onclick = function(){
+
+                        clearInterval(timmerset);
+
+                        index = this.count;
+
+                        //需要获取点击超链接的索引
+                        move(imgList , -index*520 , 30 ,"left" ,function(){
+                            autoChange();
+                        });
+
+                        setA();
+                    }
+                }
+
+                //创建一个方法设置A的颜色
+                function setA(){
+
+                    if(index >= imgArr.length - 1){
+                        //将index设置为0
+                        index = 0;
+                        //显示最后一张但是换成第一张了
+                        imgList.style.left = 0;
+                    }
+
+
+                    //遍历全部，将全部a先设红色，再将选中的设置为夸色
+                    for(var i=0 ; i<allA.length; i++){
+                        allA[i].style.backgroundColor = "";
+                    }
+                    allA[index].style.backgroundColor = "aqua";
+                }
+
+                //定义定时器
+                var timmerset;
+                function autoChange() {
+                    //自动切换
+                    //开启一个定时器自动切换
+                    clearInterval(timmerset);
+                    timmerset = setInterval(function(){
+                        index++;
+                        index = index % imgArr.length;
+                        //执行动画
+                        move(imgList , -index*520 , 30 ,"left" , function(){
+                            setA();
+                        })
+                    },3000)
+                }
+
+                autoChange();//默认调用
+            }
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <!-- 创建外部div -->
+        <div id = "outer">
+            <ul id = "imgList">
+                <li><img src="nijisanji/1.png"/></li>
+                <li><img src="nijisanji/2.png"/></li>
+                <li><img src="nijisanji/3.png"/></li>
+                <li><img src="nijisanji/4.png"/></li>
+                <li><img src="nijisanji/1.png"/></li>
+            </ul>
+            <div id = "navDiv">
+                <a herf="javascript:;"></a>
+                <a herf="javascript:;"></a>
+                <a herf="javascript:;"></a>
+                <a herf="javascript:;"></a>
+            </div>
+        </div>
+        <script src="" async defer></script>
+    </body>
+</html>

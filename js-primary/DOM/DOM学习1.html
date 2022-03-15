@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //onload 事件
+
+        /* 访问每个按钮的函数过程十分相似
+            可以提取成一个函数 */
+        
+            //ButtonID 按钮id
+            //fun 回调函数
+        function MyClick(ButtonID , FUN){
+            var btn = document.getElementById(ButtonID);
+                btn.onclick = FUN;
+        }
+
+        window.onload = function(){
+
+            MyClick("test", function(){alert("test");});
+
+            //alert("hello");
+            //通过id获取一个元素
+            var btn01 = document.getElementById("btnBJ");
+                btn01.onclick = function(){
+                    var CityBj = document.getElementById("BJ");
+                    alert(CityBj.innerHTML);
+                };
+
+            //通过TagName获取多个元素
+            var btn02 = document.getElementById("btnGroup");
+                btn02.onclick = function(){
+                    var LiGroup = document.getElementsByTagName("li");
+                    for (var i=0; i<LiGroup.length; i++){
+                        alert(LiGroup[i].innerHTML);  
+                    } 
+                };
+
+                /* 
+                    innerHTML获取元素的内部html标签，如果元素没有html标签，则无意义
+                    特别是自结束标签
+                */
+
+            var btn03 = document.getElementById("btnCityLi");
+                btn03.onclick = function(){
+                    var CityLi =  document.getElementById("city");
+                    //var lis = CityLi.getElementsByTagName("li");//访问子节点的第一种方法
+                    //var lis = CityLi.childNodes;//会把空格换行等行为视作元素，不推荐
+                    var lis = CityLi.children;//推荐
+                    alert(lis.length);
+                };
+
+            var btn04 = document.getElementById("FirstChild");
+                btn04.onclick = function(){
+                    var father = document.getElementById("city");
+                    var firstchild = father.firstElementChild;
+                    //var firstchild = father.firstChild;//firstElementChild不支持ie8以下
+                    alert(firstchild.innerHTML);
+                }
+
+            MyClick("BJfather", function(){
+                var bj = document.getElementById("BJ");
+                var father = bj.parentNode;
+                alert(father.innerText);
+            });
+
+            MyClick("SHBrother", function(){
+                var sh = document.getElementById("SH");
+                var brother = sh.previousElementSibling;
+                alert(brother.innerHTML);
+            })
+        };
+        //onload 是在整个页面加载完毕时触发
+    </script>
+</head>
+<body>
+    <!--  <button id = "btn" onmousemove="alert('呃呃')">我是一个按钮</button> -->
+    <!-- 这种写法耦合了，不推荐用 -->
+    <button id = "btn">我是一个按钮</button>
+    <script type="text/javascript">
+        //dom将整个网页当做对象
+        /* 
+            浏览器已经为我们提供了文档节点对象 这个对象是Windows属性
+        */
+        //document.write(document)
+
+        var btn = document.getElementById("btn");
+        
+        //document.write( btn.innerHTML = "Hello");//内部修改
+
+        var btnMethod = document.getElementById("btn");
+
+        btnMethod.onclick = function(){
+            alert("呃呃");
+        };
+
+        //事件：用户和浏览器的交互行为
+
+    </script>
+    
+    <ul id = "city">  
+        <li id = "BJ">北京</li>
+        <li id = "SH">上海</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+
+    <br />
+    <button id = "test">访问测试</button>
+    <br />
+    <button id = "btnBJ">获取北京标签</button>
+    <br />
+    <button id = "btnGroup">获取标签组</button>
+    <br />
+    <button id = "btnCityLi">获取CITY的li</button>
+    <br />
+    <button id = "FirstChild">获取City的第一个子节点</button>
+    <br />
+    <button id = "BJfather">获取北京的父节点</button>
+    <br />
+    <button id = "SHBrother">获取上海的兄弟节点</button>
+    
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>二级菜单</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/sdmenu.css" />
+        <script type="text/javascript" src="classtools.js"></script>
+        <script type="text/javascript" src="tools.js"></script>
+        <style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style-type: none;
+			}
+			
+			a,img {
+				border: 0;
+				text-decoration: none;
+			}
+			
+			body {
+				font: 12px/180% Arial, Helvetica, sans-serif, "新宋体";
+			}
+		</style>
+        <script type="text/javascript">
+            window.onload = function(){
+                /* 折叠方法 */
+                //获取span
+
+                var menuSpan = document.getElementsByClassName("menuSpan")
+
+                //外部定义一个变量，保存打开的div
+                var openDiv = menuSpan[0].parentNode;
+
+                for (var i=0 ; i<menuSpan.length ; i++){
+                    menuSpan[i].onclick = function(){
+                        
+                        //this代表当前点击的span
+                        var father = this.parentNode;
+
+                        changeCSS(father , 15);
+
+                        //打开菜单之后，应该关闭之前的菜单
+                        //判断father和open是否是一样的
+                        if(openDiv != father && !hasClass(openDiv , "collapsed")){
+                            changeCSS(openDiv , 15);
+                        }
+
+                        //修改打开的结点为当前
+                        openDiv = father;
+
+                    }
+                }
+
+                function changeCSS(div , speed){
+                    //切换之前获取高度
+                    var begin = div.offsetHeight;
+
+                    //打开/折叠parent
+                    changeReplace(div , "collapsed");
+
+                    //切换后获取高度
+                    var end = div.offsetHeight;
+
+                    //将元素高度重置为begin
+                    div.style.height = begin + "px";
+
+                    //执行动画函数
+                    move(div, end , speed ,"height", function(){
+                        div.style.height = "";
+                    });
+                }
+
+            }
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div id="my_menu" class="sdmenu">
+            <div>
+                <span class="menuSpan">在线工具</span>
+                <a href="#">图像优化</a>
+                <a href="#">图片放大</a>
+                <a href="#">图片剪裁</a>
+                <a href="#">图片搜索</a>
+            </div>
+            <div class="collapsed">
+                <span class="menuSpan">支持我们</span>
+                <a href="#">打赏</a>
+                <a href="#">链接</a>
+                <a href="#">资源</a>
+            </div>
+            <div class="collapsed">
+                <span class="menuSpan">其他</span>
+                <a href="#">工具包</a>
+                <a href="#">驱动</a>
+                <a href="#">例子</a>
+            </div>
+        </div>
+        <script src="" async defer></script>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 外部引入 推荐使用 -->
+    <script type="text/javascript" src="js外部尝试.js"></script>
+</head>
+<body>
+   <script>
+       document.write("hello")
+    </script>
+    <br /> 
+    <p> i = 10 j =10 i + j = ?</p>
+    <p id = "easysum"></p>
+    <button id = "sumclick" onclick="mysum()">结果</button>
+    <script>
+        function mysum(){
+            var i = 10;
+            var j = 10;
+            var m = j+i;
+            document.getElementById("easysum").innerHTML=m;
+        }
+   </script>
+   <br />
+   <script>
+       var string = "hello";
+       var i1 = 10;
+       var flag = true;
+       var arr = [1,2,3,4];
+       var arr2 = new Array();
+       arr2[0] = 10;
+       arr2[1] = 30;
+       document.write(arr2[0]);
+   </script>   
+   <br/>
+   <script>
+       var i = 11
+       document.write(i>10?"i大于10":"i小于10");
+   </script>
+   <button onclick="alert('?')">点我试试？</button>
+   <a href="javascript:alert('？？')">也点我试试？</a>
+</body>
+</html>

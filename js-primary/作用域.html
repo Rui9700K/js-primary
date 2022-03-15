@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        //Js作用域只有两种 
+        //全局和局域（全局使用windows.）
+        var a = 100;
+
+        function fun1(){
+            var a = 35;
+            fun2(a);
+            function fun2(tag){
+                alert(tag)
+            }
+        }
+        fun1();
+
+        //this 
+        var name = "全局";
+        function fun3(){
+            document.write(this.name);
+        }
+
+        var obj ={
+            name:"hello1",
+            sayName:fun3
+        };
+
+        var obj2 ={
+            name:"hello2",
+            sayName:fun3
+        };
+
+        /* fun3(); */
+        obj.sayName();
+        document.write("<br/>");
+        obj2.sayName();
+
+        //构造（工厂）
+
+        function createPerson(name , age , gender){
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+            //也可以在构造里面封装方法
+            /* obj.sayName2 = function(){
+                alert(this.name);
+            }; */
+            this.sayName2 = funName;
+        };
+        
+        createPerson.prototype.toString = function(){
+            return "Person[name=" + this.name + ", age=" + this.age + ", gender="+this.gender + "]";
+        }
+
+        function funName(){
+            alert(this.name);
+        };
+        
+        var people1 = new createPerson("小明",18,"男");
+        var people2 = new createPerson("小红",16,"女");
+        console.log(people1);
+        console.log(people2);
+        /* people2.sayName2();
+        people1.sayName2(); */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

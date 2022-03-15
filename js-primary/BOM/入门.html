@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script type="text/javascript">
+            /* BOM:
+                浏览器对象
+                Window：代表整个浏览器的窗口
+                Navigation：代表当前浏览器的信息，以此来识别不同浏览器
+                            由于历史原因，大部分属性已经没办法帮我识别浏览器了
+                            现在使用userAgent这个属性来获取
+                Location：代表浏览器的地址栏信息，操作浏览器跳转页面
+                History：代表浏览器的历史记录，可以通过该对象来操作浏览器的历史记录
+                         由于隐私原因，该对象不能获取具体对象，只能操作浏览器向前或向后翻页
+                Screen：代表用户的屏幕信息，通过该对象可以获取到用户的显示器相关信息
+
+                都是作为window对象的属性保存的，可以通过window调用，也能直接使用
+            */
+            window.onload = function(){
+
+                var ua= navigator.userAgent;
+                if(/chrome/i.test(ua)&&/edg/i.test(ua)){
+                    alert("OK")
+                    //检查edge
+                }
+
+
+                var btn = document.getElementById("btn");
+
+                btn.onclick = function(){
+                    location = "http://baidu.com";
+                    //等价location.assign
+                }
+
+                var num = 1;
+                var count = document.getElementById("count")
+                var timer = setInterval(function(){
+                    count.innerHTML = num++    
+                    if(count.innerHTML == 10){
+                        clearInterval(timer)
+                        //关闭定时器
+                    }
+                    //document.getElementById("count").innerHTML = Date.now();
+                },1000);
+
+
+            }
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+        <button id="btn">点击跳转</button>
+        <h1 id="count"></h1>
+    </body>
+</html>

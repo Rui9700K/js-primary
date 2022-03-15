@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+
+        /* 正则表达式
+            var 名称 = new RegExp("正则表达式"，"匹配模式");
+            匹配模式：
+                    i：忽略大小写
+                    g：全局匹配
+        */
+        var reg = new RegExp("a");//构造函数（灵活）
+
+        var reg2 = /a/i;//字面量（简单）
+
+        reg2 = /[a-z]/;//(|：a或者b，[]里的内容也是或关系)
+
+        var str = "a";
+
+        //检查字母是否含有abc adc aec
+
+        reg2 = /a[bde]c/
+
+        //[^] 除了
+        
+        reg2 = /[0-9]/ //找数字
+
+        reg2 = /b{3}/ //3个连续的b
+
+        reg2 = /ab{3}/ //3个连续的ab
+
+        reg2 = /ab{1,3}c/ //1-3个b {m,}m次以上
+                          //+:至少一个 *:0个或多个 ?:0个或1个
+                          //^:表示开头 $:结尾
+
+        //console.log(reg);
+
+
+        //测试
+        var result = reg2.test(str);
+        //var result = reg.test(str);
+        console.log(result);
+
+        //字符串相关：
+
+        var str2 = "1a2b3c4d5e6f7";
+
+        /* split()可以将一个字符串拆分为一个数组
+            可以传递一个正则表达式作为参数，根据正则表达式拆
+            这个方法可以不指定全局 */
+
+        var result2 = str2.split(/[a-z]/i);
+
+        console.log(result2);
+
+        //更加灵活
+
+        /* search()
+            可以搜索字符串内是否含有指定内容
+            找到返回第一次的位置，否则返回-1
+            可以传正则表达式
+            不可设置全局，设置也没用 */
+
+        str = "hello abc hello aec afc";
+
+        result = str.search(/a[bef]c/);
+
+        console.log(result);
+
+        /* match()提取字母 
+            默认情况下match只会找到第一个符合要求的内容，找到以后就停止检索*/
+
+        str2 = "1a2b3c4d5e6f7A8B9C";
+
+        result = str2.match(/[a-z]/ig);
+
+        console.log(result);
+
+        /* replace() 
+            两个参数：1.替换对象
+                     2.替换内容 */
+
+        result = str2.replace(/[a-z]/ig,"@_@");
+
+        console.log(result);
+
+        //例：检查是否是个合法手机号
+
+        var phonestr = "15255450663"; //手机号规则：11位数字
+                                      //以1开头
+                                      //第二位：3-9
+                                      //三位以后任意数字9个
+        var regPhone =  /^1[3-9][0-9]{9}/; 
+
+            result = regPhone.test(phonestr);
+            
+            console.log(result);
+
+        //转义字符 构造函数需要\\ 而字面量只需要\，例如找.
+
+        var regChange1 = /\./;
+
+        var regChange2 = new RegExp("\\.")
+
+        console.log(regChange1.test("32718@qq.com"));
+        console.log(regChange2.test("32718@qq.com"));
+
+        /* 
+            \w 任意 字母数字_
+            \W 除了 字母数字_
+            \d 任意 数字
+            \D 除了 数字
+            \s 空格
+            \S 除了 空格
+            \b 单词边界
+            \B 除了单词边界
+        */
+        //例
+
+        var regB = /\bchildren\b/ ;
+        console.log(regB.test("blade children is not right!")) ;
+
+    //例
+        /* var strName = prompt("请输入你的用户名") ;
+        //去空格就是用""替换空格(只去开头和结尾)
+        strName = strName.replace(/^\s*|\s*$/g , "") ;
+        console.log(strName); */
+    //例
+    //邮箱匹配
+        /* 
+            任意字母数字下划线（可能会含有.）+@+字母数字+.+任意字母（2-5位）【+.+任意字母（2-5位）】   
+        */
+       var strEmail = prompt("输入邮箱");
+        var regEmail = /^\w{3,}(\.\w+)*@[a-zA-Z0-9]+(\.[A-Za-z]{2,5}){1,2}$/;
+        document.write(regEmail.test(strEmail));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

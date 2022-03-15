@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        var arr = new Array();//括号里面填数字就是长度，实际上没什么作用，js数组一直是可拓展
+        arr[0] = 10;
+        arr[1] = 33;
+        arr[arr.length] = 50;
+        arr[arr.length] = 50;
+        arr[arr.length] = 10;
+        arr[arr.length] = 50;
+        //console.log(arr);
+
+        //数组当然也是可以存对象
+        var arr2 = new Array();
+        arr2 = [{name:"zyf"},{name:"zyf2"},{name:"zyf3"}];
+
+        //也可以是函数
+        var arr3 = new Array();
+        arr3 = [function(){},function(){},function(){},];
+
+        //也可以放数组,二维数组
+        var arr4 = new Array();
+        arr4 = [[1,2,3],[3,4,5],[5,6,7]];
+        
+        /* 数组方法 */
+        /* push()
+           该方法可以往数组末尾添加元素，并返回数组的新长度 
+           pop()
+           删除最后一个元素，将删除元素返回
+           unshift()
+           向数组开头添加一个或多个元素，并返回新的数组长度
+           shift()
+           删除开头元素
+        */
+        arr.push(55);
+        var result = arr.push(60,70,80);
+        //console.log(arr);
+        //console.log(result);
+        
+        /* 数组遍历 */
+
+        for (var i = 0 ; i < arr.length ; i++) {
+            //console.log(arr[i]);
+        };
+
+        /* 数组练习题：取出arr中，数值在50和70之间的数，并封装到新数组中 */
+
+        function getArr(ARR){
+            var newArr = [];
+            //step1:遍历原数组
+            for (var i=0; i<ARR.length; i++){
+                //console.log(arr[i]);
+                //step2:根据条件判断
+                if (arr[i] >= 50 && arr[i] <= 70){
+                 //step3：将符合值存入新数组空间中
+                    newArr.push(arr[i]);
+                }
+            }
+            return newArr;
+        };
+
+        //console.log(getArr(arr));
+
+        /* forEach()
+           传入的需要是个函数
+           数组中有几个元素函数就会执行几次
+           每次执行时会把遍历到的元素以实参传递进来  
+           传递3个参数
+           a：value;
+           b: index;
+           c: 正在遍历的数组;
+        */
+
+        arr.forEach(function(a , b , c){
+            //console.log("a = "+a);
+        });
+
+        arr.forEach(function(a , b , c){
+            //console.log("b = "+b);
+        });
+
+        arr.forEach(function(a , b , c){
+            //console.log("c = "+c);
+        });
+
+        /* slice()
+           可用来提取数组的指定元素
+           -参数：
+                1.截取开始的索引
+                2.截取结束的索引（不包含）,非必要参数，不传往后一直截
+                *负值代表从后往前
+
+            splice()
+            删除数组中指定元素
+            1.开始索引
+            2.删除个数
+            3.第三个及以后，可以传新参数去代替（插入）被删除的元素
+        */
+
+
+        /* 数组练习题：取出数组中重复元素 */
+        console.log(arr);
+        function arrOnly(arr){
+        for (var i = 0 ; i < arr.length ; i++){
+            var marker = arr[i];
+            for (var j = i+1 ; j < arr.length ; j++){
+                if (arr[i] == arr[j]){
+                    arr.splice(j , 1);
+                    j--;
+                    }
+                }
+            }
+            return arr;
+        };
+        console.log(arrOnly(arr));
+
+
+    /* 
+        1.concat()可以连接两个或多个数组，并将新的数组返回（可以传入其他参数）
+        2.join()将数组转为字符串，传入参数为元素连接符
+        3.reverse()反转数组，注意，这种方法会直接作用于原数组
+        4.sort()可以用来对数组中的元素排序（按照unicode编码排序），同样作用于原数组
+        可以再sort()中添加回调函数来指定排序方法，具体看下面例子
+    */
+
+        arr5 = [4,7,3,2,8,9,4,2,8,3,4,1];
+        arr5.sort(function(a,b){
+            return a - b;//升序，b-a降序
+        });
+        console.log(arr5);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

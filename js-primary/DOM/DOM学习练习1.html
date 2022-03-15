@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        .chose{
+            width:20px; 
+            height:20px;
+        }
+        p{
+            margin-top:20px;
+            font-size:30px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+
+            //访问函数
+            function MyClick(name,fun){
+                var btn = document.getElementById(name);
+                btn.onclick = fun;
+            }
+            //全选函数
+            MyClick("CheckAll",function(){
+                //获取对象
+                var items = document.getElementsByName("items");
+                //遍历items
+                for(var i=0;i<items.length;i++){
+                    items[i].checked = true;
+                }
+                judge();
+            })
+
+            MyClick("CheckNone",function(){
+                var items = document.getElementsByName("items");
+                //遍历items
+                for(var i=0;i<items.length;i++){
+                    items[i].checked = false;
+                }
+                judge();
+            })
+            
+            MyClick("CheckReverse",function(){
+                var items = document.getElementsByName("items");
+                //遍历items
+                for(var i=0;i<items.length;i++){
+                    /* if (items[i].checked == false){
+                        items[i].checked = true;
+                    }
+                    else{
+                        items[i].checked = false;
+                    } */
+                    items[i].checked = !items[i].checked
+                }
+                judge();
+            })
+
+            MyClick("Submit",function(){
+                //弹出选择框的value值
+                var items = document.getElementsByName("items");
+                var SelectItems = 0; 
+                for(var i = 0; i < items.length; i++){
+                    if (items[i].checked == true){
+                    alert(items[i].value);
+                    SelectItems++;
+                    }
+                }
+                if(SelectItems == 0){
+                    alert("请至少选择一个");
+                }
+            })
+
+            /* var MyCheck = MyClick("CheckBox", function(){
+                //要设置和子box状态一样
+                var items = document.getElementsByName("items");
+                for (var i = 0; i < items.length; i++){
+                    items[i].checked = MyCheck.btn.checked;
+                }
+            }) */
+
+            var MyCheck = document.getElementById("CheckBox");
+            MyCheck.onclick = function(){
+                var items = document.getElementsByName("items");
+                for (var i = 0; i < items.length; i++){
+                    items[i].checked = MyCheck.checked;
+                }
+            }
+            var Items = document.getElementsByName("items");
+
+            for(var i = 0; i < Items.length; i++){
+                Items[i].onclick = function(){
+                    judge();
+                }
+            }
+
+            //一个判断全选框状态的函数
+            judge = function(){
+                MyCheck.checked = true;
+                //var CheckedCount = 0;
+                for(var j = 0; j < Items.length ; j++){
+                    if(Items[j].checked == false){
+                        MyCheck.checked = false;
+                        break;
+                    }
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <form method="post" action="">
+        <h1>你的运动爱好？</h1>
+        <p><input class="chose" type="checkbox" name="items" value="足球"/>足球</p>
+        <p><input class="chose" type="checkbox" name="items" value="篮球"/>篮球</p>
+        <p><input class="chose" type="checkbox" name="items" value="乒乓球"/>乒乓球</p>
+        <p><input class="chose" type="checkbox" name="items" value="羽毛球"/>羽毛球</p>
+        <p><input class="chose" type="checkbox" id="CheckBox" />全选</p>
+        <input type="button" id="CheckAll" value="全 选"/>
+        <input type="button" id="CheckNone" value="全不选"/>
+        <input type="button" id="CheckReverse" value="反 选"/>
+        <input type="button" id="Submit" value="提 交"/>
+        
+    </form>
+</body>
+</html>

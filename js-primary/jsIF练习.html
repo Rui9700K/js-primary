@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css样式布局.css" type="text/css">
+</head>
+
+<body>
+    <!--     <script>
+        while (true) {
+            var score = prompt("输入成绩："); //弹出输入框
+            if (score <= 100 && score >= 0) {
+                break;
+            }
+        }
+        if (score == 100) {
+            alert("奖励宝马")
+        } else if (score >= 90 && score < 100) {
+            alert("奖励手机")
+        } else if (score >= 60 && score < 90) {
+            alert("一本书")
+        } else {
+            alert("一顿揍")
+        }
+    </script>
+ -->
+    <!--     <script>
+        var a = +prompt("输入a：");
+        var b = +prompt("输入b：");
+        var c = +prompt("输入c：");
+        var max
+        max = a > b ? a : b;
+        max = max > c ? max : c;
+        min = a < b ? a : b;
+        min = min < c ? min : c;
+        if ((a != max && a != min) || ( a==c || a==b ))
+        {
+            mid = a;
+        }
+        else if((b != max && b != min) || ( b==c || b==a ))
+        {
+            mid = b;
+        }
+        else
+        {
+            mid = c;
+        }
+        alert(max + " " + mid + " " + min)
+    </script> -->
+
+    <!--     <script>
+        var score = prompt("输入成绩：");
+        switch (true){
+            case (score >= 60):
+                document.write("合格");
+                break;
+            default:
+                document.write("不合格");
+                break;
+        }
+
+    </script> -->
+
+    <!--     <script>
+        var money = 1000;
+        var n=0;
+        while (money <= 5000){
+            money = money*1.05
+            n++;
+        }
+        document.write(n);
+    </script> -->
+
+    <!--     <script>
+        var sum = 0;
+        for (var i=0 ; i<=100 ; i++)
+        {
+            if(i%2==0){
+                sum = sum + i;
+            }
+        }
+        document.write(sum);
+    </script> -->
+
+    <!-- <script>
+        for ( var i=100 ; i<1000 ; i++){
+            var a = parseInt(i/100);
+            var b = parseInt((i-100*a)/10);
+            var c = i%10;
+
+            if(a*a*a+b*b*b+c*c*c == i){
+                document.write(i+"<br/>");
+            }
+
+        }
+    </script> -->
+
+<!--     <script>
+        while (true) {
+            var number = prompt("输入一个数：");
+            if (number > 1) {
+                var num = number;
+                var flag = true;
+                for (var i = 2; i < num; i++) {
+                    if (num % i == 0 && num != 2) {
+                        flag = false;
+                    }
+                }
+                if (flag) {
+                    alert("是质数");
+                } else {
+                    alert("不是质数")
+                }
+            }
+        }
+    </script> -->
+
+    <!-- <script>
+        for(var i=1; i<=10 ; i++) {
+            for(var j=1; j<=i ;j++){
+                document.write("<p>"+j+"*"+i+"="+i*j+"</p>");
+            }
+            document.write("<br />");
+        }
+    </script> -->
+
+    <!-- <script>
+        function isOdd(num){
+            return num % 2 == 0;
+        }
+        var result = isOdd();
+        console.log(result);
+    </script> -->
+
+    <script>
+        function circleS(r){
+            return 3.14*r*r;
+        }
+        result = circleS();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        window.onload = function(){
+
+            var box1 = document.getElementsByClassName("box1");
+            console.log(box1.length);
+
+            /* 很强大的选择器方法 */
+
+            var select = document.querySelector(".box1 div");//如果有多个class，那就返回第一个
+            console.log(select.innerHTML);
+
+            var selectboxs = document.querySelectorAll(".box1");//即使符合条件的只有一个，也依然返回数组
+            console.log(selectboxs.length);
+
+            //访问按钮
+            MyClick = function(STR , FUN){
+                var btn = document.getElementById(STR);
+                btn.onclick = FUN;
+            }
+
+            MyClick("addGZ" , function(){
+                //创建li元素节点
+                var li = document.createElement("li");//创建一个元素节点对象，需要标签名
+                var GZ = document.createTextNode("广州");//创建一个文本内容
+
+                //将GZ设置为li的子节点
+                //父节点.appendChild(子节点)
+                li.appendChild(GZ);
+
+                var city = document.getElementById("City");
+                //city.appendChild(li); //认两次父亲
+
+                //指定子节点前插入
+                var BJ = document.getElementById("BJ");
+
+                city.insertBefore(li,BJ);
+
+            })
+
+            MyClick("repBJ" , function(){
+                var li = document.createElement("li");
+                var GZ = document.createTextNode("广州");
+                li.appendChild(GZ);//组装新节点
+
+                var city = document.getElementById("City");//获取父节点
+
+                var BJ = document.getElementById("BJ");//获取目标节点
+
+                city.replaceChild(li , BJ)
+            })
+
+            MyClick("delBJ" , function(){
+                //var city = document.getElementById("City");//获取父节点
+
+                var BJ = document.getElementById("BJ");//获取目标节点
+
+                //city.removeChild(BJ);
+
+                BJ.parentNode.removeChild(BJ) //通过自己定位父亲节点然后删除自己
+            })
+
+            MyClick("addGZ2" , function(){
+                var city = document.getElementById("City");//获取父节点
+
+                city.innerHTML += "<li>广州</li>"//常用
+
+            })
+
+        }
+    </script>
+</head>
+<body>
+    <div class = "box1">
+        <div>hello</div>
+    </div>
+    <div class = "box1">
+        <div>hello</div>
+    </div>
+    <div class = "box1">
+        <div>hello</div>
+    </div>
+    <div id="CityContent">
+        <ul id="City">
+            <li id = "BJ">北京</li>
+            <li>上海</li>
+            <li>杭州</li>
+        </ul>
+    </div>
+    <div id = "ButtonContent">
+        <input type="button" id="addGZ" value="增加广州节点"/><br/>
+        <input type="button" id="repBJ" value="广州节点替换北京节点"/><br/>
+        <input type="button" id="delBJ" value="删除北京节点"/><br/>
+        <input type="button" id="addGZ2" value="增加广州节点(注入式)"/><br/>
+    </div>
+</body>
+</html>

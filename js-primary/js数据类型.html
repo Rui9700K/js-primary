@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        基本数据类型
+        string 字符串
+        number 数值
+        boolean 布尔值
+        null 空值
+        undefined 未定义
+        （5种基本类型）
+        object 对象
+    -->
+    <script type="text/javascript">
+        /* 强制转换 */
+        var a = 123;
+
+        console.log(typeof a);
+        console.log(a);
+
+        //调用a的toSting()方法
+        var b = a.toString();
+        console.log(typeof b);
+        console.log(b);
+        //null 和 undefined 不会调用 toString 需要用String
+
+        // parseInt()可以将一个字符串的整数部分取出来，转为Number
+        // parseFloat()               浮点型         
+        // 先转为String再转为目标
+        // 0开头8进制，0x开头16进制，0b开头2进制。
+    </script>
+</head>
+
+<body>
+    <script>
+        var result = 1 && 2;
+        document.write(result);
+        //数值与数值有false返回false，都是false返回前面的
+    </script>
+    <br />
+    <br />
+    <script>
+        var result = 1 || 2;
+        document.write(result);
+        //第一个值为true就直接返回true，第一个是false就返回第二个
+    </script>
+</body>
+
+</html>
