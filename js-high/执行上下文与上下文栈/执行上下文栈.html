@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script type="text/javascript">
+            var a = 10
+            var bar = function(x){
+                var b = 5
+                foo(x + b)
+            }
+            var foo = function(y){
+                var c = 5
+                console.log(a + c +y)
+                console.log(this)
+            }
+            bar(10)
+
+            /* 
+                几个上下文对象？
+                    3个：window bar(10) foo(x + b)
+
+                -------------------------------------------------------------------
+
+                1.在全局代码调用前，js引擎就会创建一个栈来存储管理所有的上下文对象
+                2.在全局执行上下文（window）确定后，将其添加到栈中
+                3.在函数执行上下文创建后，将其添加到栈中
+                4.在当前函数执行完后，将栈顶的对象移除
+                5.当所有的代码执行完成后，栈中只剩下window
+                
+                栈：后进先出
+            */
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

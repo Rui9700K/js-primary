@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+        <script type="text/javascript">
+            /* 
+                点击某个按钮提示出这是第几个按钮
+            */
+        window.onload = function(){
+            var btns = document.getElementsByTagName("button")
+            //遍历加监听
+            for (var i = 0 , l = btns.length ; i < l ; i++){
+               /* var btn = btns[i]
+               btn.onclick = function(){
+                   alert("第"+(i+1)+"个")
+               } */
+               //现在理解为什么不引用下标方式的话总是输出“4”，原因是在定义onclick这个函数的时候
+               //这个函数内部并没有i，所以从内向外要去找i，因此就找到了上层的for循环的i
+               //但是这个i它被访问的时候是已经被固定，即循环已经执行完毕，所以会是个定值
+               //本质原因是js的var声明方式的原因
+
+
+               /* var btn = btns[i]
+               btn.index = i+1
+               btn.onclick = function(){
+                   alert("第"+this.index+"个")
+               } */
+               //下标写法
+
+
+               ;(function(i) {
+                var btn = btns[i]
+                    btn.onclick = function(){
+                        alert("第"+(i+1)+"个")
+                    }
+               })(i)
+               //闭包写法 这样写其实是定义了三个btn函数，产生三个作用域，同时每个作用域有立即执行函数传入的参数i
+               //橙色i是自己的（局部的），白色i是外部的（全局的）。外部的i作为实参传入代替形参i
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <button>测试1</button>
+        <button>测试2</button>
+        <button>测试3</button>
+        <script src="" async defer></script>
+    </body>
+</html>
