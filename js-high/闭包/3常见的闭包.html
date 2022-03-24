@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script type="text/javascript">
+            /* 
+                产生了几个闭包？
+                    看外部函数对象执行了几次
+                    和内部执行几次没关系
+            */
+            function fn1(result){
+                //此时闭包就已经产生了（函数提升，内部函数对象已经创建了）
+                var a = 2
+                function fn2 (){
+                    a++
+                    console.log(a) //闭包不会消失
+                }
+                function fn3(){
+                    a--
+                    console.log(a) 
+                }
+                if (result == 1 ){
+                    return fn2;
+                }else{
+                    return fn3;
+                }
+            }
+            var f = fn1(1) //因为有对象指向，所以闭包内容不会成为垃圾对象
+            f() //3
+            f() //4
+            f = null //闭包死亡
+            //f() 此时再执行f() 提示不是函数对象，说明已经死亡
+            console.log('_______________________________')
+            var f2 = fn1()
+            f2() //1
+            f2() //0
+            // 1.将函数作为另一个函数的返回值
+
+
+            function showDelay(msg , time){
+                setTimeout(function(){
+                    alert(msg)
+                },time)
+            }
+            showDelay('hello',2000)
+            // 2.将函数作为实参传递给另一个函数调用
+
+            /* 
+                闭包作用
+                1、使用函数内部的变量在函数执行完后，仍然存活在内存中（延长了局部变量的生命周期）
+                2、让函数外部可以操作（读写）到函数内部的数据（变量/函数）
+            */
+           /*
+                问题：
+                    1.函数执行完后，函数内部声明的局部变量是否还存在？ 
+                        一般是不存在，存在于闭包中的变量才可能存在
+                    2.在函数外部能直接访问函数内部的局部变量吗？ 
+            */
+
+
+            /* 
+                闭包的声明周期
+                    1.产生：嵌套内部函数定义执行完成时就产生了（不是在调用）
+                    2.死亡：在嵌套的内部函数成为垃圾对象时
+            */
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>
