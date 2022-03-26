@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script type="text/javascript" >
+            //es6 允许使用=>定义函数
+
+            //旧
+            let fn = function(){
+
+            }
+
+            //新
+            let fnNew = (a,b) => {
+                return a+b
+            }
+
+            console.log(fnNew(1,2));
+
+            //特性：
+            //1.this值是静态的，this始终指向函数声明时所在作用域下的this的值
+
+            function getName (){
+                console.log(this.name)
+            }
+
+            let getName2 = () => {
+                console.log(this.name)
+            }
+
+            window.name = "BOB";
+            const nameHere = {
+                name : "PETER"
+            }
+            //直接调用
+            getName();//BOB
+            getName2();//BOB
+            console.log("________________________________________________________________")
+
+            //call 调用
+            getName.call(nameHere);//PETER
+            getName2.call(nameHere);//BOB
+
+            //2.不能作为构造实例化对象
+            let Person = (name , age) => {
+                this.name = name;
+                this.age = age;
+            }
+
+            /* let me = New Person("Tom",24); */ //报错
+
+            //3.不能使用argumens变量
+            let fnArguments = () =>{
+                //console.log(argumens);//argumens 未被定义
+            }
+            fnArguments(1,2,3)
+
+            //4.箭头函数的简写
+                //1）省略小括号，当形参有且只有一个的时候
+                let Add = n =>{
+                    return n+n;
+                }
+                console.log(Add(1))
+                //2）省略{}，当代码体只有一条语句的时候,而且return也需要去掉
+                let pow = n => n*n;
+                console.log(pow(2))
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script type="text/javascript">
+
+            /* 
+                缺点，执行完之后局部变量没有释放，需要手动null掉
+            */
+
+            function fn1(){
+                var arr = new Array(10000)
+                function fn2(){
+                    console.log(arr.length)
+                }
+                return fn2
+            }
+            var f = fn1()
+            f()
+            f = null
+
+            //错误1.内存溢出
+
+            /* var obj = {}
+
+            for (var i =0;i<10000;i++){
+                obj[i] = new Array(100000000)
+            } */
+
+            //错误2.内存泄漏
+            //占用的空间没有及时释放
+            //常见：意外的全局变量，没有及时清理的计时器或回调函数，闭包
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

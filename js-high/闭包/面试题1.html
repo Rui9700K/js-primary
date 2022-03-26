@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script type="text/javascript">
+            //第一题
+            var name = "The Window";
+            var object = {
+                name : "My Object",
+                getNameFun : function(){
+                    return function(){
+                        return this.name;
+                    }
+                }
+            }
+            alert(object.getNameFun()());//输出：The Window  执行的是函数，所以访问的this指向window
+
+            //第二题
+            var name2 = "The Window"
+            var object2 = {
+                name2:"My Object2",
+                getNameFun : function(){
+                    var that = this;
+                    return function(){
+                        return that.name2;
+                    }
+                }
+            }
+            alert(object2.getNameFun()())
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

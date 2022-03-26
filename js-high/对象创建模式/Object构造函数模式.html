@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script type="text/javascript">
+            //构造方法一
+            let person = new Object();
+            person.name ='Tom'
+            person.age = 12
+            person.setName = function(name){
+                this.name = name
+            }
+            person.setName("Bob")
+            alert(person.name)
+
+            //构造方法二
+            let person2 = {
+                name : 'Tom',
+                age: '12',
+                setName : function(name){
+                    this.name = name 
+                }
+            }
+
+            //构造方法三(工厂函数生成,return一个Object),缺点：没有具体的类型，都是object
+            function PEOPLE (name , age){
+                var obj = {
+                    name : name,
+                    age : age,
+                    setName : function(name){
+                        this.name = name
+                    }
+                }
+                return obj
+            }
+
+            let P1 = PEOPLE("Kite","12")
+            let P2 = PEOPLE("Koros","13")
+
+            //构造方法四(自定义构造函数)
+            function CreatePerson(name , age){
+                this.name = name;
+                this.age = age;
+                this.setName = function(name){
+                    this.name = name
+                };
+            }
+
+            let p3 = new CreatePerson("Json","15")
+
+            //改进构造方法四
+            function CreatePerson2(name , age){
+                this.name = name ;
+                this.age = age;
+            }
+            CreatePerson2.prototype.setName = function(name){
+                this.name = name
+            }
+
+            let p4 = new CreatePerson2("1","12")
+            let p5 = new CreatePerson2("2","14")
+            console.log(p3,p4,p5)
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>
