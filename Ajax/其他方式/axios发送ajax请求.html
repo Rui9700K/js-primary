@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            window.onload = function(){
+                const btns = document.querySelectorAll("button")
+
+                //配置 baseURL
+                axios.defaults.baseURL ='http://127.0.0.1:8000'
+
+                btns[0].onclick = function(){
+                    //get
+                    axios.get('/axios',{
+                        //url参数
+                        params:{
+                            id:100,
+                            vip:7
+                        },
+                        //请求头信息
+                        /* headers:{
+                            name:zyf,
+                            age:22
+                        } */
+                    }).then(value => {
+                        console.log(value);
+                    });
+                }
+
+                //post必须设置头信息
+                /* btns[1].onclick = function(){
+                    axios.post('/axios',{
+                        //url
+                        params:{
+                            id:200,
+                            vip:9
+                        },
+                        //请求头参数
+                                  
+                    }).then(value => {
+                        console.log(value);
+                    });
+                } */
+
+                btns[2].onclick = function(){
+                    axios({
+                        //请求方法
+                        method: 'GET',
+                        //url
+                        url:'/axios',
+                        //
+                        params:{
+                            vip:10,
+                            level:30
+                        },
+
+                        //头信息
+                        /* eaders:{}, */
+
+                        //请求体参数
+                        /* data:{} */
+                    }).then(response =>{
+                        //响应状态码
+                        console.log(response.status)
+                    })
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <button>GET</button>
+        <button>POST</button>
+        <button>AJAX</button>
+        <script src="" async defer></script>
+    </body>
+</html>
