@@ -11,31 +11,38 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
-        <script type="text/javascript">
-            function fun(n , o){
-                console.log(o)
-                return {
-                    fun:function(m){
-                        return fun(m , n);
-                    }
+        <script>
+            //向对象中添加方法 up down
+            let game = {}
+
+            //声明一个对象
+            let method = {
+                up: Symbol(),
+                down: Symbol()
+            }
+
+            game[method.up] = function(){
+                console.log("up")
+            }
+
+            game[method.down] = function(){
+                console.log("down")
+            }
+
+            console.log(game)
+
+            //直接往对象里面添加symbol方法
+            let gameContent = {
+                name:"狼人杀",
+                [Symbol('say')]:function(){
+                    console.log('发言')
+                },
+                [Symbol('kill')]:function(){
+                    console.log('处决')
                 }
             }
-            var a = fun(0) 
-            a.fun(1)//每次执行外部函数就会产生新的闭包
-            a.fun(2)
-            a.fun(3)
-            console.log("________________________________________________________________")
 
-            var b = fun(0).fun(1).fun(2).fun(3);
-            console.log("________________________________________________________________")
-
-            var c = fun(0).fun(1);
-            c.fun(2);
-            c.fun(3);
-            console.log("________________________________________________________________")
-
-            //做题思路：1.有没有产生新的闭包？
-            //         2.有没有用新的闭包？
+            console.log(gameContent)
         </script>
     </head>
     <body>

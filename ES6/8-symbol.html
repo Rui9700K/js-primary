@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script>
+            //创建symbol
+            let s = Symbol();
+            console.log(s, typeof s);
+
+            let s2 = Symbol('tagName')//标注
+            let s3 = Symbol('tagName')
+
+            console.log(s2 === s3)//可见两个确实不一样，具有唯一性
+
+            let s4 = Symbol.for('tagName')
+            let s5 = Symbol.for('tagName')
+            console.log(s4 , typeof s4)
+            console.log(s4 === s5)//用for方法创建的话两个值就是一样的
+
+            /* 
+                symbol类型不可运算
+                基本数据类型：
+                USONB
+                u：undefined
+                s: string symbol
+                o: object
+                n: null number
+                b: boolean
+            */
+
+
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

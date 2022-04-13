@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script>
+            window.onload = function(){
+                //`...`扩展运算符能将 数组 转换为逗号分割的 参数序列
+                const boys = ['Tom','Jerry','Bob'];
+
+                function fun (){
+                    console.log(arguments);
+                }
+
+                fun(...boys);
+
+                //1.数组的合并 
+                const A = ['A','B'];
+                const B = ['C','D'];
+                // ES5: const AandB = A.concat(B);
+                const AandB = [...A,...B];
+                console.log(AandB);
+
+                //2.数组克隆
+                const cloneA = ['A','B','C'];
+                const cloneB = [...cloneA];
+                console.log(cloneB)
+
+                //3.将伪数组转化为真数组
+                const divs = document.querySelectorAll('div');
+                console.log(divs);
+                const divArr = [...divs];
+                console.log(divArr);
+            }
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div>
+            <div>
+
+            </div>
+        </div>
+        <script src="" async defer></script>
+    </body>
+</html>

@@ -11,31 +11,28 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
-        <script type="text/javascript">
-            function fun(n , o){
-                console.log(o)
-                return {
-                    fun:function(m){
-                        return fun(m , n);
-                    }
-                }
+        <script>
+            /* 
+                方式2:借用构造函数继承(假的)
+                套路:
+                1.定义父类型构造函数
+                2.定义子类型构造函数
+                3.在子类型构造函数中调用父类型构造
+                关键:
+                1.在子类型构造函数中通用super()调用父类型构造函数
+            */
+            function Person(name , age){
+                this.name = name;
+                this.age = age;
             }
-            var a = fun(0) 
-            a.fun(1)//每次执行外部函数就会产生新的闭包
-            a.fun(2)
-            a.fun(3)
-            console.log("________________________________________________________________")
 
-            var b = fun(0).fun(1).fun(2).fun(3);
-            console.log("________________________________________________________________")
+            function Student(name , age , gender){
+                Person.call(this, name ,age);//相当于：this.Person(name,age)
+                this.gender = gender
+            }
 
-            var c = fun(0).fun(1);
-            c.fun(2);
-            c.fun(3);
-            console.log("________________________________________________________________")
-
-            //做题思路：1.有没有产生新的闭包？
-            //         2.有没有用新的闭包？
+            var s = new Student("Tom","12","male")
+            console.log(s.name,s.age,s.gender)
         </script>
     </head>
     <body>
