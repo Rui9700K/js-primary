@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script>
+            //声明对象
+            const people = {
+                name:'周扬帆',
+                tech:['JS','H5','CSS','Vue','AJAX','ES6+'],
+                age:22,
+            };
+
+            //获取对象所有的键
+            console.log(Object.keys(people));
+            //获取对象所有的值
+            console.log(Object.values(people));
+            //entries 创建map
+            const m = new Map(Object.entries(people));
+            console.log(m.get('name'))
+            //对象属性的描述对象
+            console.log(Object.getOwnPropertyDescriptors(people))
+
+            const obj = Object.create(null,{
+                name:{
+                    //设置值
+                    value:'Zyf',
+                    //设置一些属性
+                    writable:true,
+                    configurable:true,
+                    enumerable:true,
+                }
+                //create:两个参数，第一个是对象原型，第二个是对象描述
+            })
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

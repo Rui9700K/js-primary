@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script>
+            //声明 map
+            let m = new Map();
+
+            //添加元素
+            m.set('name','ZYF')
+            m.set('change',function(){
+                console.log('change')
+            });
+
+            let key ={
+                school:'BUCT'
+            };
+            m.set(key,['北京','朝阳','昌平']);
+
+            //size
+            console.log(m.size);
+
+            //删除
+            m.delete('name')
+
+            //获取
+            console.log(m.get(key))
+
+            //清空
+            /* m.clear(); */
+
+            //遍历
+            for(let v of m){
+                console.log(v)
+            }
+
+            /* console.log(m) */
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

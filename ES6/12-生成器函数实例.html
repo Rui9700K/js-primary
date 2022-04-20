@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script>
+            //主要解决异步问题
+            //1S 后输出 111 2s后输出222 3s后输出333 （防止出现回调地狱）
+            function one(){
+                setTimeout(()=>{
+                    console.log(111);
+                    fun.next();
+                },1000)
+            }
+
+            function two(){
+                setTimeout(()=>{
+                    console.log(222);
+                    fun.next();
+                },2000)
+            }
+
+            function three(){
+                setTimeout(()=>{
+                    console.log(333);
+                    fun.next();
+                },3000)
+            }
+
+            function * gen(){
+                yield one();
+                yield two();
+                yield three();
+            }
+
+            //调用生成器函数
+            let fun = gen();
+            fun.next();
+
+            //模拟获取 用户数据 订单数据 商品数据
+            function getUsers(){
+                setTimeout(()=>{
+                    let data = '用户数据';
+                    fun1.next(data);
+                },1000);
+            }
+
+            function getOrders(){
+                setTimeout(()=>{
+                    let data = '订单数据';
+                    fun1.next(data);
+                },1000)
+            }
+
+            function getGoods(){
+                setTimeout(()=>{
+                    let data = '商品数据';
+                    fun1.next(data);
+                },1000)
+            }
+
+            function * gen1(){
+                let users = yield getUsers();
+                console.log(users)
+                let orders = yield getOrders();
+                console.log(orders)
+                let goods = yield getGoods();
+                console.log(goods)
+            }
+
+            let fun1 = gen1();
+            fun1.next()
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script>
+            //生成器其实就是一个特殊的函数
+            //异步编程 纯回调函数 node fs ajax mongodb
+
+            /* function * gen(){
+                //console.log("hello");
+                yield 'AAA';
+                //console.log("helloA");
+                yield 'BBB';
+                //console.log("helloB");
+                yield 'CCC';//分隔符
+                //console.log("helloC");
+            }
+
+            let fun = gen();
+            console.log(fun.next())
+            console.log(fun.next())
+            console.log(fun.next())
+            console.log(fun.next()) */
+
+            /* fun.next();
+            fun.next();
+            fun.next();
+            fun.next();//通过next方法执行 */
+
+            //遍历
+            /* for(let v of gen()){
+                console.log(v);
+            } */
+
+            function * gen1(args) {
+                console.log(args);//第一层
+                let one = yield 111;//第二层开始
+                console.log(one);//第二层
+                let two = yield 222;//第三层开始
+                console.log(two)//第三层
+                let three = yield 333;//第四层开始 
+                console.log(three)//第四层 分成n+1层（n指yield语句个数）
+            }
+
+            //执行获取迭代器对象
+            let iterator = gen1('AAA');
+            console.log(iterator.next());
+            //next方法可以传入实参
+            console.log(iterator.next('BBB'));
+            //实参的效果是将作为停止的yield的整体返回结果
+            console.log(iterator.next('CCC'));
+            console.log(iterator.next('DDD'));
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

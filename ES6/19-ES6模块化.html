@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script type="module">
+            //引入模块
+            /* import * as m1 from "./19.1-模块1.js"
+
+            import * as m2 from "./19.1-模块2.js"
+
+            import * as m3 from "./19.1-模块3.js"
+
+            console.log(m1)
+            console.log(m2)
+            console.log(m3)
+            m3.default.change(); */
+
+            //结构赋值形式
+            /* import {school,teach} from "./19.1-模块1.js"
+            import {school as BUCT,findJob} from "./19.1-模块2.js"
+            import {default as m3} from "./19.1-模块3.js" //默认暴露必须起个名字
+            console.log(school,teach)
+            console.log(BUCT,findJob)
+            console.log(m3) */
+
+            //简便形式，只能用于默认暴露
+            /* import m3 from "./19.1-模块3.js";
+            console.log(m3) */
+
+        </script>
+        <script src="./19.1-app.js" type="module">
+            //利用外部文件来进行引入封装
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

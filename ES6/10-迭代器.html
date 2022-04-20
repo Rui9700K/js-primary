@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script>
+            const Arr = ['A','B','C','D']
+
+            //使用 for of 遍历数组
+            for(let v in Arr){
+                console.log(v);//打印的只是下标
+            }
+
+            for(let v of Arr){
+                console.log(v);//打印内容
+            }
+
+            let ite = Arr[Symbol.iterator]();
+
+            //调用对象的next方法
+            console.log(ite.next());
+            console.log(ite.next());
+            console.log(ite.next());
+            console.log(ite.next());
+            console.log(ite.next());
+
+            //例：
+            const banji = {
+                name:"一班",
+                stu:[
+                    'AA',
+                    'BB',
+                    'CC',
+                    'DD'
+                ],
+                [Symbol.iterator](){
+                    //索引变量
+                    let index = 0;
+                    //重新给当前this赋值
+                    let _this = this;
+                    return{
+                        next:function(){
+                            if(index < _this.stu.length){
+                                const result = {value:_this.stu[index],done:false};
+                                //下标自增
+                                index++;
+                                //返回结果
+                                return result;
+                            }else{
+                                return {value:undefined,done:true}
+                            }
+                        }
+                    }
+                }
+            }
+
+            //遍历这个对象
+            for(let v of banji){
+                console.log(v);
+            }
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

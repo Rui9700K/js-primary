@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script>
+            //Object.is 判断两个值是否完全相等
+            console.log(Object.is(120,120));// ===相当于（NaN除外）
+            //Object.assign 对象的合并
+            const config1={
+                host:'loaclhost',
+                port:3306,
+                name:'root',
+                pass:'root',
+                test:'AAA',
+            }
+
+            const config2 ={
+                host:'loaclhost',
+                port:5501,
+                name:'root',
+                pass:'root',
+                test2:'BBB',
+            }
+
+            console.log(Object.assign(config1,config2)) //后面的把前面的都有的属性覆盖，各自具有的保留
+            //Object.setPrototypeof 设置原型对象 Object.getPrototypeof
+            const school = {
+                name:'BUCT'
+            }
+            const building = {
+                class:'house'
+            }
+
+            Object.setPrototypeOf(school , building);
+            console.log(Object.getPrototypeOf(school))
+            console.log(school)
+
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <script>
+        //接口地址 ： http://api.tianapi.com/topnews/index
+
+        const p = new Promise((resolve, reject) => {
+
+            //1.创建对象
+            const xhr = new XMLHttpRequest();
+
+            //2.初始化
+            xhr.open("GET", "https://www.mxnzp.com/api/news/types?page=1&app_id=8sdjljrppdsblcpf&app_secret=ZU90R2hKQXFzV1MyZWtaaVY2K0Fpdz09");
+
+            //3.发送
+            xhr.send();
+
+            //4.绑定事件，处理响应结果
+            xhr.onreadystatechange = function () {
+                //判断
+                if (xhr.readyState == 4) {
+                    //判断响应状态码 200 404 403 401 500
+                    if (xhr.status >= 200 && xhr.status <= 304) {
+                        //表示成功
+                        resolve(xhr.response);
+                    } else {
+                        //如果失败
+                        reject(xhr.status)
+                    }
+                }
+            }
+        })
+        
+        //指定回调
+        p.then(function (value) {
+            console.log(value);
+        },function (reason) {
+            console.error(reason)
+        })
+    </script>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <script src="" async defer></script>
+</body>
+
+</html>

@@ -18,7 +18,7 @@
             //声明一个对象
             let method = {
                 up: Symbol(),
-                down: Symbol()
+                down: Symbol(),
             }
 
             game[method.up] = function(){
@@ -30,6 +30,8 @@
             }
 
             console.log(game)
+            game[Reflect.ownKeys(game)[0]]()
+            game[Reflect.ownKeys(game)[1]]() //访问传入参数（对象）的键值进行调用
 
             //直接往对象里面添加symbol方法
             let gameContent = {
@@ -41,8 +43,10 @@
                     console.log('处决')
                 }
             }
-
-            console.log(gameContent)
+            //调用symbol声明的方法
+            const result = Object.getOwnPropertySymbols(gameContent)
+            gameContent[result[0]]()
+            gameContent[result[1]]()
         </script>
     </head>
     <body>

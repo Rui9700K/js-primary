@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script>
+            //async 和 await 结合，可以让异步代码像同步代码一样
+            async function fn(){
+                /* // 返回的结果不是promise类型的对象，则会默认对象成功
+                return 'ZYF';
+
+                //抛出错误
+                throw new Error('出错了') */
+
+                return new Promise((resolve, reject)=>{
+                    resolve('成功的数据')
+                    reject('失败的错误')
+                })
+            }
+
+            const result = fn();
+
+            //调用then方法
+            result.then(value =>{
+                console.log(value);
+            },reason=>{
+                console.log(reason);
+            })
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

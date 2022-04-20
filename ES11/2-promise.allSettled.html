@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script>
+            //声明两个promise对象
+            const p1 = new Promise((resolve, reject)=>{
+                setTimeout(()=>{
+                    resolve('商品数据')
+                },1000)
+            });
+
+            const p2 = new Promise((resolve, reject)=>{
+                setTimeout(()=>{
+                    /* resolve('商品数据2') */
+                    reject('出错了！')
+                },1000)
+            });
+
+            //调用allSettled方法
+            const result = Promise.allSettled([p1,p2]);//这个永远返回成功，但是分别展示promise内容
+
+            const result2 = Promise.all([p1,p2]);//有一个失败，整个状态是失败的
+
+            console.log(result)
+            console.log(result2)
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>
